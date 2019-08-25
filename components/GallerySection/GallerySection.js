@@ -20,34 +20,29 @@ const GallerySection = () => {
 
   return (
     <div>
-      <Gallery
-        photos={photos}
-        renderImage={props => (
-            <Photo {...props} />
-        )}
-        margin={3}
-        direction={"column"}
-        onClick={openLightbox}
-      />
-      <ModalGateway>
-        {viewerIsOpen ? (
-          <Modal onClose={closeLightbox}>
-            <Carousel
-              currentIndex={currentImage}
-              views={photos.map(x => ({
-                ...x,
-                srcset: x.srcSet,
-                caption: x.title
-              }))}
-            />
-          </Modal>
-        ) : null}
-      </ModalGateway>
+          <Gallery
+            photos={photos}
+            renderImage={props => <Photo {...props} />}
+            margin={3}
+            direction={"column"}
+            onClick={openLightbox}
+          />
+          <ModalGateway>
+            {viewerIsOpen ? (
+              <Modal onClose={closeLightbox}>
+                <Carousel
+                  currentIndex={currentImage}
+                  views={photos.map(x => ({
+                    ...x,
+                    srcset: x.srcSet,
+                    caption: x.title
+                  }))}
+                />
+              </Modal>
+            ) : null}
+          </ModalGateway>
       <style jsx>
         {`
-          body {
-            background: red!important;
-          }
           figure.effect-lily img {
             max-width: none;
             width: -webkit-calc(100% + 50px);

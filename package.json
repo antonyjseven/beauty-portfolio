@@ -17,6 +17,7 @@
     "react-image-masonry": "^0.4.0",
     "react-images": "^1.0.0",
     "react-images-viewer": "^1.6.2",
-    "react-photo-gallery": "^8.0.0"
+    "react-photo-gallery": "^8.0.0",
+    "react-transition-group": "^4.2.2"
   }
 }

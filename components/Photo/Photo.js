@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 const imgWithClick = { cursor: "pointer" };
 
@@ -10,6 +11,8 @@ const Photo = ({ index, onClick, photo, margin, direction, top, left }) => {
     imgStyle.top = top;
   }
 
+  const transitionDelay = index * 75 + 'ms';
+
   const handleClick = event => {
     onClick(event, { photo, index });
   };
@@ -20,25 +23,30 @@ const Photo = ({ index, onClick, photo, margin, direction, top, left }) => {
       style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
       className="effect-lily "
     >
-      <img
-        {...photo}
-        alt="img"
-      />
-      <figcaption>
-        <div>
-          <h2>
-            Nice <span>Lily</span>
-          </h2>
-          <p>Lily likes to play with crayons and pencils</p>
-        </div>
-      </figcaption>
+      <CSSTransition
+        in={true}
+        classNames="image-transition"
+        appear
+      >
+        <>
+          <img {...photo} alt="img" />
+          <figcaption>
+            <div>
+              <h2>
+                Nice <span>Lily</span>
+              </h2>
+              <p>Lily likes to play with crayons and pencils</p>
+            </div>
+          </figcaption>
+        </>
+      </CSSTransition>
       <style jsx>{`
         figure.effect-lilly {
-        overflow:hidden;
+          overflow: hidden;
         }
         figure.effect-lily img {
           opacity: 1;
-          transform:scale(1);
+          transform: scale(1);
           -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
           transition: opacity 0.35s, transform 0.35s;
         }
@@ -78,27 +86,26 @@ const Photo = ({ index, onClick, photo, margin, direction, top, left }) => {
 
         figure.effect-lily:after {
           position: absolute;
-          top:0;
+          top: 0;
           left: 0;
-          width:100%;
-          height:100%;
-          content: '';
+          width: 100%;
+          height: 100%;
+          content: "";
           opacity: 0;
           transition: 0.3s ease-out;
-           // background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+          // background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
           // background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
           //background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
           background: black;
         }
         figure.effect-lily:hover:after {
-          content: '';
+          content: "";
           opacity: 0.45;
         }
 
         figure.effect-lily:hover img {
-          transform:scale(1.1);
+          transform: scale(1.1);
         }
-
 
         figure.effect-lily:hover img,
         figure.effect-lily:hover p,
@@ -118,6 +125,28 @@ const Photo = ({ index, onClick, photo, margin, direction, top, left }) => {
           transition-delay: 0.05s;
           -webkit-transition-duration: 0.35s;
           transition-duration: 0.35s;
+        }
+
+        // React-transition-group animation part
+
+        .list-transition-enter,
+        .image-transition-appear {
+          position: relative;
+          opacity: 0!important;
+          top: -100px;
+          color: transparent;
+          background-color: #5a564c;
+          transition: all 0.8s!important;
+        }
+
+        .image-transition-appear-done {
+        opacity: 1!important;
+          position: relative;
+          top: 0;
+          color: transparent;
+          background-color: #5a564c;
+          transition: all 500ms!important;
+          transition-delay:${transitionDelay}!important;
         }
       `}</style>
     </figure>
