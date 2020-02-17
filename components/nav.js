@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { beauty } from '../photos/beauty';
+import { recent } from '../photos/recent';
 
 const links = [
   { href: "https://zeit.co/now", label: "Portfolio" },
@@ -10,17 +12,30 @@ const links = [
   return link;
 });
 
-const Nav = () => (
-  <nav>
-    <ul>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+const Nav = (props) => {
+    const {
+        photos: [photos, setPhotos]
+    } = {
+        photos: useState(0),
+        ...(props.photos || {})
+    };
+    return (
+        <nav>
+            <ul>
+                <li>
+                    <p onClick={()=> setPhotos(recent) }>Recent works</p>
+                </li>
+                <li>
+                    <p onClick={()=> setPhotos(beauty) }>Beauty works</p>
+                </li>
+                {links.map(({ key, href, label }) => (
+                    <li key={key}>
+                        <a href={href}>{label}</a>
+                    </li>
+                ))}
+            </ul>
 
-    <style jsx>{`
+            <style jsx>{`
       // :global(body) {
       //   margin: 0;
       //   font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
@@ -46,7 +61,8 @@ const Nav = () => (
         font-size: 16px;
       }
     `}</style>
-  </nav>
-);
+        </nav>
+    );
+};
 
 export default Nav;

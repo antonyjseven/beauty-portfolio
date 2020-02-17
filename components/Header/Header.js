@@ -1,10 +1,8 @@
 import Nav from "../nav";
-// import styles from './style.scss'
 
 const Header = () => (
   <section>
     <h2>Anastasia Leonova</h2>
-    <Nav />
 
     <style jsx>{`
       h2 {

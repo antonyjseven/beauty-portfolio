@@ -1,12 +1,15 @@
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import GallerySection from "../components/GallerySection/GallerySection";
+import Nav from "../components/nav";
+import { recent } from '../photos/recent'
 
-const Home = () => (
-  <div>
-    <style global jsx>{`
+const Home = () => {
+    const [photos, setPhotos] = useState(recent);
+    return (
+        <div>
+            <style global jsx>{`
       @font-face {
         font-family: "FranklinGothic-Book";
         src: url("/static/fonts/FranklinGothic-Book.eot?#iefix")
@@ -34,18 +37,19 @@ const Home = () => (
 
       body {
         font-family: "FranklinGothic-Book";
+        margin: 0;
       }
     `}</style>
-    <Head>
-      <title>Home</title>
-    </Head>
-    <Header />
+            <Head>
+                <title>Home</title>
+            </Head>
+            <Header />
+            <Nav photos={{photos: [photos, setPhotos]}}/>
+            <div className={'gallery-wrapper'} style={{marginTop: '20px'}}>
+                <GallerySection photos={photos} />
+            </div>
 
-    <div className={'gallery-wrapper'}>
-        <GallerySection />
-    </div>
-
-    <style jsx>{`
+            <style jsx>{`
       .gallery-wrapper {
         margin: 0 auto;
         max-width: 996px
@@ -94,69 +98,9 @@ const Home = () => (
         font-size: 13px;
         color: #333;
       }
-
-      figure.effect-lily img {
-            max-width: none;
-            width: -webkit-calc(100% + 50px);
-            width: calc(100% + 50px);
-            opacity: 0.7;
-            -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-            transition: opacity 0.35s, transform 0.35s;
-            -webkit-transform: translate3d(-40px, 0, 0);
-            transform: translate3d(-40px, 0, 0);
-          }
-
-          figure.effect-lily figcaption {
-            text-align: left;
-          }
-
-          figure.effect-lily figcaption > div {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 2em;
-            width: 100%;
-            height: 50%;
-          }
-
-          figure.effect-lily h2,
-          figure.effect-lily p {
-            -webkit-transform: translate3d(0, 40px, 0);
-            transform: translate3d(0, 40px, 0);
-          }
-
-          figure.effect-lily h2 {
-            -webkit-transition: -webkit-transform 0.35s;
-            transition: transform 0.35s;
-          }
-
-          figure.effect-lily p {
-            color: rgba(255, 255, 255, 0.8);
-            opacity: 0;
-            -webkit-transition: opacity 0.2s, -webkit-transform 0.35s;
-            transition: opacity 0.2s, transform 0.35s;
-          }
-
-          figure.effect-lily:hover img,
-          figure.effect-lily:hover p {
-            opacity: 1;
-          }
-
-          figure.effect-lily:hover img,
-          figure.effect-lily:hover h2,
-          figure.effect-lily:hover p {
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-          }
-
-          figure.effect-lily:hover p {
-            -webkit-transition-delay: 0.05s;
-            transition-delay: 0.05s;
-            -webkit-transition-duration: 0.35s;
-            transition-duration: 0.35s;
-          }
     `}</style>
-  </div>
-);
+        </div>
+    );
+};
 
 export default Home;

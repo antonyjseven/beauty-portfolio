@@ -1,4 +1,5 @@
-export const photos = [
+import recent from './recent';
+export const beauty = [
     {
         width: 3,
         height: 4,
@@ -44,4 +45,4 @@ export const photos = [
         height: 4,
         src: "https://lh3.googleusercontent.com/tIklwscS5mt0SBXm0JFsH5fXx5jd_qHXPJwrX4APXZjovnFjlEW5nFPPes1Hy1K7e9g3Tl_WVwzqskEY8QUm7iDIeRPP_z5n4R9A0c9pvCNnImrm2og3gk6KP8A_GWWwciH8aaOB51Wod-cCG9FMa0XjQZJModGJ6fVurdE2k2d9YN_SQDBwEo2tIOjQpfkbjtnr_zeWe0sXqCmCCKSlKTHcn25m0nJRDHz8g_ZmzRzMoTUdg6bfN-3pBUgiE7ieC0BHBJEUIC5dih4E9gAfI4u3GDxBCobUqKXL91SsNoloNnwIypY0kTyR81brw1RBTgUrUKNY8BHwqI0x0OACEGDdu6OKB3jgn_l4Pds0Gs4Oz8K81xG3rSzoM5P7BYfGmz3eXPYQaGqLaO0CsgzckuZNbziToPmxEB0W7slNmnzeqc3qpmPphrWl7C8W3YtB0o1SprJFrbzjymxqqO1tSR2_vVm1fW5CJ9HxcR2WB7rj-DvMKrFB-K8gVpdVD4MrK6KUq4jpFwp0JbyntZvolz47JCrC-IXlEjD85QFWBBINJgJfXe0BR-b0FGkWzH_4EkDS4EZ2YYAGNdEoleNKuao0_7jBCRJ0OyB94M1-EVHFyHvHFMfP3btNzfJrBRFjHKcl7wLTubDtwTwINMQpyVYXr9uCRATl_alq0ORsec-oCjvoPooyaV3puYrGBqErY-I9c7cQ5hu1PMxcS9GPLLMX=w1072-h1386-no"
     }
-];
+].reverse();
